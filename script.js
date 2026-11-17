@@ -84,9 +84,54 @@ function generateCreatures() {
   });
 }
 
-generateCreatures();
+
 
 // 3. Listen for changes to each preference control and update the appearance.
+
+function updatePreferences() {
+  document.body.dataset.theme = $theme.value;
+  $collection.dataset.layout = $layout.value;
+}
+
 // 4. Save both selected preferences to Local Storage.
+
+function savePreferences() {
+  const preferences = {
+    theme: $theme.value,
+    layout: $layout.value
+  };
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(preferences));
+  $status.textContent = 'Preferences saved!';
+}
+
 // 5. Check for saved data on load and restore the controls and appearance.
+
+$theme.addEventListener('change', function() {
+  updatePreferences();
+  savePreferences();
+});
+
+// Restore preferences from Local Storage on page load and check that saved data exists before using JSON.parse() to avoid errors.
+
+function restorePreferences() {
+  const savedPreferences = localStorage.getItem(STORAGE_KEY);
+  if (savedPreferences !== null) {
+    const preferences = JSON.parse(savedPreferences);
+    // Restore the theme and layout controls
+    $theme.value = preferences.theme;
+    $layout.value = preferences.layout;
+    // Restore the appearance based on saved preferences
+    updatePreferences();
+    $status.textContent = 'Welcome back! Your preferences have been restored.';
+  } else {
+    // If no saved preferences, set default values
+    updatePreferences();
+    $status.textContent = 'Welcome! Choose a habitat and layout to customize your collection.';
+  }
+}
+
+
+generateCreatures();
+
 // Add short pseudocode comments before writing each feature.
