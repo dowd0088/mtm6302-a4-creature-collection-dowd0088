@@ -112,6 +112,12 @@ $theme.addEventListener('change', function() {
   savePreferences();
 });
 
+// Listen for changes to the layout control and update preferences and save them.
+$layout.addEventListener('change', function() {
+  updatePreferences();
+  savePreferences();
+});
+
 // Restore preferences from Local Storage on page load and check that saved data exists before using JSON.parse() to avoid errors.
 
 function restorePreferences() {
@@ -131,7 +137,7 @@ function restorePreferences() {
   }
 }
 
-
+// Generate the creature entries and restore preferences on page load.
 generateCreatures();
-
+restorePreferences();
 // Add short pseudocode comments before writing each feature.
