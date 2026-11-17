@@ -40,11 +40,17 @@ const $creatures = [
 
 // YOUR WORK: build these features using the supplied HTML, CSS, and data.
 // 1. Select the collection and preference controls.
-const $collection = document.querySelector('#creature-collection');
-const $themeSelect = document.querySelector('#theme-select');
-const $layoutSelect = document.querySelector('#layout-select');
-const $statusMessage = document.querySelector('#status-message');
+
+const $collection = document.querySelector('#collection');
+const $themeSelect = document.querySelector('#theme');
+const $layoutSelect = document.querySelector('#layout');
+const $statusMessage = document.querySelector('#status');
+const STORAGE_KEY = 'mtm6302-creature-habitat-preferences';
+
 // 2. Use a loop to generate the creature entries. See START-HERE.md for markup.
+
+
+
 // 3. Listen for changes to each preference control and update the appearance.
 // 4. Save both selected preferences to Local Storage.
 // 5. Check for saved data on load and restore the controls and appearance.
