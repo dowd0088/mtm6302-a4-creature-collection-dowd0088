@@ -42,14 +42,49 @@ const $creatures = [
 // 1. Select the collection and preference controls.
 
 const $collection = document.querySelector('#collection');
-const $themeSelect = document.querySelector('#theme');
-const $layoutSelect = document.querySelector('#layout');
-const $statusMessage = document.querySelector('#status');
-const STORAGE_KEY = 'mtm6302-creature-habitat-preferences';
+const $theme = document.querySelector('#theme');
+const $layout = document.querySelector('#layout');
+const $status = document.querySelector('#status');
+
+// Assignment specific: use a unique key for your Local Storage data.
+const STORAGE_KEY = 'mtm6302-creature-collection-preferences';
 
 // 2. Use a loop to generate the creature entries. See START-HERE.md for markup.
 
+function generateCreatures() {
+  $collection.innerHTML = ''; // Clear existing entries
+  $creatures.forEach(function(creature) {
+    const $item = document.createElement('li');
+    $item.classList.add('creature');
 
+    // Create the image element
+    const $image = document.createElement('img');
+    $image.src = creature.image;
+    $image.alt = creature.alt;
+    
+    // information container
+    const $info = document.createElement('div');
+    $info.classList.add('creature-info');
+
+    // Create the name element
+    const $name = document.createElement('h3');
+    $name.textContent = creature.name;
+
+    // Create the description element
+    const $description = document.createElement('p');
+    $description.classList.add('creature-description');
+    $description.textContent = creature.description;
+
+    // Append elements to the info container
+    $info.append($name, $description);
+    $item.append($image, $info);
+
+    // Append the item to the collection
+    $collection.append($item);
+  });
+}
+
+generateCreatures();
 
 // 3. Listen for changes to each preference control and update the appearance.
 // 4. Save both selected preferences to Local Storage.
